@@ -1,35 +1,34 @@
 'use client'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from "@/firebase/firebase";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useRouter } from 'next/navigation';
 
-export default function SignIn(){
+export default function SignUp(){
   const router = useRouter();
 
   const [formValues, setFormValues] = useState({email: '', password: ''});
+
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useCreateUserWithEmailAndPassword(auth);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>){
     setFormValues((prevFormValues) => ({...prevFormValues, [e.target.name]: e.target.value }))
   }
 
-  const [
-    signInWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useSignInWithEmailAndPassword(auth);
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
     try {
-			const user = await signInWithEmailAndPassword(formValues.email, formValues.password);
-			if (!user) return;
-      console.log(user);
-      
+			const newUser = await createUserWithEmailAndPassword(formValues.email, formValues.password);
+			if (!newUser) return;
 			router.push('/');
 		} catch (fetchError: any) {
+      // Catch clause variable type annotation must be 'any' or 'unknown' if specified.ts(1196)
       console.log(fetchError.message)
 		}
   }
@@ -70,9 +69,9 @@ export default function SignIn(){
         </div>
         <button className='mt-4 w-full focus:ring-blue-300 font-medium rounded-lg
               border-2 border-gray-600 px-5 py-2.5 text-center hover:bg-gray-300'
-			  >Log in </button>
+			  >Sign Up</button>
       </form>
-      <Link href='/sign-up' className='flex justify-center pt-8 hover:underline'>Sign Up</Link>
+      <Link href='/register' className='flex justify-center pt-8 hover:underline'>Log In</Link>
       <Link href='/forgot-password' className='flex justify-center pt-8 hover:underline'>Forgot password?</Link>
     </div>
   </div>
