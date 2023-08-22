@@ -1,9 +1,10 @@
 'use client'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from "@/firebase/firebase";
+import { firebaseErrors } from '@/firebase/errors';
 
 export default function SignIn(){
   const router = useRouter();
@@ -27,27 +28,23 @@ export default function SignIn(){
 			const user = await signInWithEmailAndPassword(formValues.email, formValues.password);
 			if (!user) return;
       console.log(user);
-      
+
 			router.push('/');
 		} catch (fetchError: any) {
       console.log(fetchError.message)
 		}
   }
 
-  useEffect(() => {
-		if (error) console.log(error.message);
-	}, [error]);
-
   return <div className='flex flex-col justify-center items-center pt-[10%]'>
-    <div  className='max-w-[300px]'>
+    <div  className='w-[270px]'>
       <h1 className='text-center pb-6'>Login</h1>
       <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
-
+        { error ? <div id='validation' className='text-center'>{firebaseErrors[error.message]}</div> : null }
         <div>
           <label>
             <div className='text-sm font-medium block text-gray-600'>E-mail:</div>
             <input name='email' id='email' type='email' required aria-describedby='email-validation'
-              className='border-2 p-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
+              className='w-full border-2 p-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
               placeholder='smb@smth.domain'
               value={formValues.email}
               onChange={handleChange}
@@ -60,7 +57,7 @@ export default function SignIn(){
           <label>
             <div className='text-sm font-medium block text-gray-600'>Пароль:</div>
             <input  name='password' id='password' type='password' required aria-describedby='password-validation'
-              className='p-2 border-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
+              className='w-full p-2 border-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
               placeholder='******'
               value={formValues.password}
               onChange={handleChange}
