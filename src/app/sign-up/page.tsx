@@ -5,6 +5,7 @@ import { auth } from "@/firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from 'next/navigation';
 import { firebaseErrors } from '@/firebase/errors';
+import { ButtonLoader } from '../components/navBar/ButtonLoader';
 
 export default function SignUp(){
   const router = useRouter();
@@ -65,11 +66,16 @@ export default function SignUp(){
             <div id="password-validation" className="hidden"></div>
           </label>
         </div>
-        <button className='mt-4 w-full focus:ring-blue-300 font-medium rounded-lg
-              border-2 border-gray-600 px-5 py-2.5 text-center hover:bg-gray-300'
-			  >Sign Up</button>
+
+        { loading ? <ButtonLoader /> : 
+            <button className='mt-4 w-full focus:ring-blue-300 font-medium rounded-lg
+                  border-2 border-gray-600 px-5 py-2.5 text-center hover:bg-gray-300'
+            >Sign Up</button>
+        }
       </form>
+
       <Link href='/sign-in' className='flex justify-center pt-8 hover:underline'>Log In</Link>
+
       <Link href='/forgot-password' className='flex justify-center pt-8 hover:underline'>Forgot password?</Link>
     </div>
   </div>
