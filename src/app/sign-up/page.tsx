@@ -38,7 +38,7 @@ export default function SignUp(){
 
   return <div className='flex flex-col justify-center items-center pt-[10%]'>
     <div  className='w-full max-w-[300px]'>
-      <h1 className='text-center pb-6'>Login</h1>
+      <h1 className='text-center pb-6'>Sign up</h1>
       <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
         { error ? <div id='validation' className='text-center'>{firebaseErrors[error.message]}</div> : null}
         <div>
@@ -67,7 +67,7 @@ export default function SignUp(){
           </label>
         </div>
 
-        { loading ? <ButtonLoader /> : 
+        { loading ? <ButtonLoader /> :
             <button className='mt-4 w-full focus:ring-blue-300 font-medium rounded-lg
                   border-2 border-gray-600 px-5 py-2.5 text-center hover:bg-gray-300'
             >Sign Up</button>
@@ -76,7 +76,7 @@ export default function SignUp(){
 
       <Link href='/sign-in' className='flex justify-center pt-8 hover:underline'>Log In</Link>
 
-      <Link href='/forgot-password' className='flex justify-center pt-8 hover:underline'>Forgot password?</Link>
+      <Link href='/reset-password' className='flex justify-center pt-8 hover:underline'>Forgot password?</Link>
     </div>
   </div>
 }
