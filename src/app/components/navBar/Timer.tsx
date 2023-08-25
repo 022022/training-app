@@ -48,7 +48,14 @@ export function Timer(){
         <div onClick={startTimer}>Refresh</div>
       </>
     :
-      <div onClick={startTimer}>Timer</div>
+      <div onClick={startTimer} className='group cursor-pointer relative' aria-labelledby='timer-tooltip'>
+        <p>Timer icon</p>
+        <div className='absolute left-2/4 -translate-x-2/4 mx-auto w-max
+                p-2 rounded shadow-lg
+                scale-0 group-hover:scale-100
+								transition-all duration-200 ease-in-out' id='timer-tooltip'>Start Timer
+        </div>
+      </div>
     }
   </div>
 }

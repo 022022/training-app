@@ -23,7 +23,16 @@ export function Navbar({onProblemPage = false}){
     }
 
     {userLogged ? <>
-      <span>avatar</span>
+      <div className='group cursor-pointer relative' aria-labelledby='user-tooltip'>
+        <p>Avatar icon</p>
+        <div className='absolute left-2/4 -translate-x-2/4 mx-auto w-max
+                  p-2 rounded shadow-lg
+                  scale-0 group-hover:scale-100
+                  transition-all duration-200 ease-in-out' id='user-tooltip'>{userLogged.email}
+        </div>
+      </div>
+
+
       <button onClick={signOut}>Log out</button>
       </>
       : <Link href='/auth/sign-in'>Sign In</Link>
