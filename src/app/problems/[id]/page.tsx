@@ -1,7 +1,37 @@
-import { Navbar } from '@/app/components/navBar/NavBar';
+'use client'
+import Split from 'react-split'
 
 export default function SingleProblem(){
-  return <>
+  return <Split
+    sizes={[25, 75]}
+    minSize={100}
+    expandToMin={false}
 
-  happy coding!</>
+    snapOffset={30}
+    dragInterval={1}
+    direction="horizontal"
+    cursor="col-resize"
+
+    className='flex min-h-screen'
+  >
+    <div>left pane</div>
+
+
+      <Split
+        sizes={[60, 40]}
+        minSize={100}
+        expandToMin={false}
+        snapOffset={30}
+        dragInterval={1}
+        direction="vertical"
+        cursor="col-resize"
+
+        className='flex flex-col'
+      >
+      <div>top pane</div>
+      <div>bottom pane</div>
+    </Split>
+
+
+</Split>
 }
