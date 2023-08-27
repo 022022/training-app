@@ -1,10 +1,11 @@
 'use client'
+import SettingsPanel from '@/app/components/SettingsPanel/SettingsPanel'
 import Split from 'react-split'
 
 export default function SingleProblem(){
   return <Split
     sizes={[25, 75]}
-    minSize={100}
+    minSize={0}
     expandToMin={false}
 
     snapOffset={30}
@@ -19,7 +20,7 @@ export default function SingleProblem(){
 
       <Split
         sizes={[60, 40]}
-        minSize={100}
+        minSize={10}
         expandToMin={false}
         snapOffset={30}
         dragInterval={1}
@@ -28,7 +29,11 @@ export default function SingleProblem(){
 
         className='flex flex-col'
       >
-      <div>top pane</div>
+      <div>
+        <SettingsPanel />
+
+        top pane
+      </div>
       <div>bottom pane</div>
     </Split>
 
