@@ -1,6 +1,9 @@
 'use client'
 import SettingsPanel from '@/app/components/SettingsPanel/SettingsPanel'
 import Split from 'react-split'
+import CodeMirror from '@uiw/react-codemirror';
+import { basicLight, basicDark } from '@uiw/codemirror-theme-basic';
+import { javascript } from '@codemirror/lang-javascript';
 
 export default function SingleProblem(){
   return <Split
@@ -29,10 +32,14 @@ export default function SingleProblem(){
 
         className='flex flex-col'
       >
-      <div>
+      <div className='overflow-auto'>
         <SettingsPanel />
-
-        top pane
+        <CodeMirror
+          value="// code here"
+          theme={basicLight}
+          extensions={[javascript()]}
+          style={{fontSize: 16}}
+        />
       </div>
       <div>bottom pane</div>
     </Split>
