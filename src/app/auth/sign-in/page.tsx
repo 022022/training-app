@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from "@/firebase/firebase";
 import { firebaseErrors } from '@/firebase/errors';
-import { ButtonLoader } from '../../components/navBar/ButtonLoader';
+import { ButtonLoader } from '../../components/ButtonLoader/ButtonLoader';
 
 export default function SignIn(){
   const router = useRouter();

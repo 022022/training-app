@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { auth } from "@/firebase/firebase";
-import { ButtonLoader } from '../../components/navBar/ButtonLoader';
+import { ButtonLoader } from '../../components/ButtonLoader/ButtonLoader';
 import { firebaseErrors } from '@/firebase/errors';
 
 export default function ResetPassword() {

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { auth } from "@/firebase/firebase";
-import { Timer } from './Timer';
+import { Timer } from './../Timer/Timer';
 
 export function Navbar({onProblemPage = false}){
   const [userLogged, loadingLogged, errorLogged] = useAuthState(auth);

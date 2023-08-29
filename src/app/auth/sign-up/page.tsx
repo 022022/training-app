@@ -5,7 +5,7 @@ import { auth } from "@/firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from 'next/navigation';
 import { firebaseErrors } from '@/firebase/errors';
-import { ButtonLoader } from '../../components/navBar/ButtonLoader';
+import { ButtonLoader } from '../../components/ButtonLoader/ButtonLoader';
 
 export default function SignUp(){
   const router = useRouter();
