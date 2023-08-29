@@ -4,6 +4,7 @@ import Split from 'react-split'
 import CodeMirror from '@uiw/react-codemirror';
 import { basicLight, basicDark } from '@uiw/codemirror-theme-basic';
 import { javascript } from '@codemirror/lang-javascript';
+import ActionsBar from '@/app/components/ActionsBar/ActionsBar';
 
 export default function SingleProblem(){
   return <Split
@@ -16,21 +17,21 @@ export default function SingleProblem(){
     direction="horizontal"
     cursor="col-resize"
 
-    className='flex min-h-screen'
+    className='flex min-h-screen bg-white'
   >
     <div>left pane</div>
 
 
       <Split
         sizes={[60, 40]}
-        minSize={10}
+        minSize={50}
         expandToMin={false}
         snapOffset={30}
         dragInterval={1}
         direction="vertical"
         cursor="col-resize"
 
-        className='flex flex-col'
+        className='flex flex-col bg-white'
       >
       <div className='overflow-auto'>
         <SettingsPanel />
@@ -40,10 +41,22 @@ export default function SingleProblem(){
           extensions={[javascript()]}
           style={{fontSize: 16}}
         />
+
       </div>
-      <div>bottom pane</div>
+      <div className='relative'>
+        <div className='overflow-auto'>
+          <p>bottom pane</p>
+          <p>bottom pane</p>
+          <p>bottom pane</p>
+          <p>bottom pane</p>
+          <p>bottom pane</p>
+        </div>
+
+        <ActionsBar />
+      </div>
     </Split>
 
 
 </Split>
+
 }
