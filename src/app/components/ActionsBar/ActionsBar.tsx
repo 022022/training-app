@@ -1,3 +1,4 @@
+'use client'
 export default function ActionsBar(){
   function submitSolution(){}
   return <div className='absolute bottom-0 right-0 w-full  bg-white'>
