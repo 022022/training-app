@@ -11,7 +11,9 @@ export default function Contribute(){
     statement: '',
     constraints: '',
     handler: '',
-    starter: '// Your code here'
+    starter: '// Your code here',
+    difficulty: 'easy',
+    category: ''
   })
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>){
@@ -34,7 +36,7 @@ export default function Contribute(){
     const id = [];
     const alphabet = Array(26).fill(0).map((_, n) => String.fromCharCode(n + 97));
     for(const char of title){
-      if(alphabet.includes(char)){
+      if(alphabet.includes(char.toLowerCase())){
         id.push(char.toLowerCase());
       } else if (id[id.length - 1] !== '-'){
         id.push('-');
@@ -51,6 +53,22 @@ export default function Contribute(){
       <input name='title' type='text'
         onChange={handleChange}
         value={formValues.title}
+         className='w-full border-2 p-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
+></input>
+    </label>
+    <label>
+      Difficulty
+      <input name='difficulty' type='text'
+        onChange={handleChange}
+        value={formValues.difficulty}
+         className='w-full border-2 p-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
+></input>
+    </label>
+    <label>
+      Category
+      <input name='category' type='text'
+        onChange={handleChange}
+        value={formValues.category}
          className='w-full border-2 p-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
 ></input>
     </label>
