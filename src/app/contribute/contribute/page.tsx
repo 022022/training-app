@@ -22,7 +22,7 @@ export default function Contribute(){
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>){
     e.preventDefault();
-    const newProblem = {...formValues, likes: 0}
+    const newProblem = {...formValues, handler: JSON.stringify(formValues.handler), likes: 0}
 
     try {
       await setDoc(doc(fireStore, "problems", makeId(newProblem.title)), newProblem);
@@ -88,7 +88,7 @@ export default function Contribute(){
 ></textarea>
     </label>
     <label>
-      Handler Function (String)
+      Handler (args[] & answers[] object, example: {`{args: [[1,2], [3,5]], answers: [3, 8]}`})
       <textarea name='handler' value={formValues.handler}
       onChange={handleChange} className='w-full border-2 p-2 border-gray-600 outline-none sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500'
 ></textarea>
