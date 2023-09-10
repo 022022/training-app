@@ -5,7 +5,7 @@ import CodeMirror from '@uiw/react-codemirror';
 import { basicLight, basicDark } from '@uiw/codemirror-theme-basic';
 import { javascript } from '@codemirror/lang-javascript';
 import ActionsBar from '@/app/components/ActionsBar/ActionsBar';
-import { Problem } from '@/app/mocks/singleProblem';
+import { Problem } from '@/app/types';
 
 export function Splits({problem}: {problem: Problem}){
   return <Split
@@ -20,7 +20,7 @@ export function Splits({problem}: {problem: Problem}){
 
   className='flex min-h-screen bg-white'
 >
-  <div>{problem.problemStatement}</div>
+  <div>{problem.statement}</div>
 
 
     <Split

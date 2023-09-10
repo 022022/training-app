@@ -1,5 +1,6 @@
 'use client'
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function SettingsModal(){
   const [isOpen, setShow ] = useState(false);
@@ -22,14 +23,15 @@ export default function SettingsModal(){
           <button className='border border-gray-600 px-5 py-2.5 rounded-lg' onClick={toggleShow}>
               Settings
           </button>
-          {isOpen &&
+          {isOpen && createPortal(
               <dialog ref={modal}
                 className='backdrop:bg-black backdrop:bg-opacity-50
                 max-w-[500px] bg-white flex flex-col gap-4 p-4'
-              >
+                >
                 <button onClick={toggleShow}>Icon Close</button>
                 Modal Contents
-              </dialog>
+              </dialog>,
+              document.body)
           }
   </>
 }

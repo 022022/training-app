@@ -1,11 +1,12 @@
 'use client'
 import Link from 'next/link';
 import { useState } from 'react';
-import { auth } from "@/firebase/firebase";
+import { auth, fireStore } from "@/firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useRouter } from 'next/navigation';
 import { firebaseErrors } from '@/firebase/errors';
 import { ButtonLoader } from '../../components/ButtonLoader/ButtonLoader';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function SignUp(){
   const router = useRouter();
@@ -29,7 +30,16 @@ export default function SignUp(){
 			const newUser = await createUserWithEmailAndPassword(formValues.email, formValues.password);
 			if (!newUser) return;
 
-			router.push('/');
+      await setDoc(doc(fireStore, "users", newUser.user.uid), {
+        id: newUser.user.uid,
+        name: newUser.user.displayName,
+        email: newUser.user.email,
+        created: newUser.user.metadata.creationTime,
+        likes: [],
+        solved: [],
+      });
+
+			router.push('/problems-list');
 		} catch (fetchError: any) {
       // Catch clause variable type annotation must be 'any' or 'unknown' if specified.ts(1196)
       console.log(fetchError.message)
